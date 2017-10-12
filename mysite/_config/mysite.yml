@@ -1,0 +1,7 @@
+---
+Name: myproject
+---
+SilverStripe\Core\Manifest\ModuleManifest:
+  project: mysite
+SilverStripe\Core\Injector\Injector:
+  SilverStripe\Forms\HTMLEditor\TinyMCEScriptGenerator: 'SilverStripe\Forms\HTMLEditor\TinyMCEGZIPGenerator'
