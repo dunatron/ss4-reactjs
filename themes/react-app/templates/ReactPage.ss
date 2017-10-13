@@ -27,9 +27,12 @@ Change it, enhance it and most importantly enjoy it!
 </head>
 <body>
 <div id="react-root">
-    <h1>A react APP with ss4</h1>
-    $Layout
+
 </div>
+
+<h1 style="text-align: center;">A react APP with ss4</h1>
+
+    $Layout
 
 
 </body>

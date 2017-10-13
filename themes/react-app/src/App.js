@@ -12,13 +12,14 @@ class App extends Component {
           <img src={SSLogo} className="ss-logo" alt="logo" />
           <img src={logo} className="App-logo" alt="logo" />
           <img src={WebpackLogo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Welcome to SS4 + REACT + WEBPACK</h1>
+          <p>anyone know how to get webpack watch working with Vagrant?? compiles falsely STopped?</p>
         </header>
         <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
+          To get started, edit <code>src/App.js</code> and save to reload Hello.
         </p>
       </div>
-    );
+    )
   }
 }
 

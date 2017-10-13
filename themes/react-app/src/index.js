@@ -6,4 +6,4 @@ import App from './App';
 
 ReactDOM.render(<App />, document.getElementById('react-root'));
 // registerServiceWorker();
-console.log('please compile and reload');
+console.log('where are you???');
