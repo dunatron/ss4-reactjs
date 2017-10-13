@@ -46,7 +46,9 @@
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
     "build:dev": "node_modules/.bin/webpack",
-    "build:prod": "webpack -p"
+    "build:prod": "webpack -p",
+    "start:watch": "webpack-dev-server --host 0.0.0.0 --public 192.168.72.91 --watch-poll",
+    "start:watch2": "webpack-dev-server --public 192.168.72.91:80 --watch-poll"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -88,5 +90,8 @@
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^2.8.2"
   }
 }

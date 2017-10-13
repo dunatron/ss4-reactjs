@@ -11,6 +11,9 @@ module.exports = {
   entry: {
     app: './index.js',
   },
+  watchOptions: {
+    poll: true
+  },
   output: {
     path: distPath,
     filename: '[name].bundle.js',
