@@ -93,6 +93,7 @@
     "extends": "react-app"
   },
   "devDependencies": {
+    "webpack-bundle-analyzer": "^2.9.0",
     "webpack-dev-server": "^2.8.2"
   }
 }
