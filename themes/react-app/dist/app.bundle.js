@@ -21819,21 +21819,13 @@ var App = function (_Component) {
           { className: 'App-header' },
           _react2.default.createElement('img', { src: _silverstripeLogo2.default, className: 'ss-logo', alt: 'logo' }),
           _react2.default.createElement('img', { src: _logo2.default, className: 'App-logo', alt: 'logo' }),
-          _react2.default.createElement('img', { src: _webpack2.default, className: 'App-logo', alt: 'logo' }),
-          _react2.default.createElement(
-            'h1',
-            { className: 'App-title' },
-            'Welcome to SS4 + REACT + WEBPACK'
-          ),
-          _react2.default.createElement(
-            'p',
-            null,
-            'anyone know how to get webpack watch working with Vagrant?? compiles falsely STopped?'
-          )
+          _react2.default.createElement('img', { src: _webpack2.default, className: 'App-logo', alt: 'logo' })
         ),
         _react2.default.createElement(
           'p',
           { className: 'App-intro' },
+          'Welcome to SS4 + REACT + WEBPACK ',
+          _react2.default.createElement('br', null),
           'To get started, edit ',
           _react2.default.createElement(
             'code',
@@ -21855,7 +21847,7 @@ exports.default = App;
 /* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "Images/logo.svg";
+module.exports = __webpack_require__.p + "img/logo.svg";
 
 /***/ }),
 /* 39 */
@@ -21897,7 +21889,7 @@ exports = module.exports = __webpack_require__(15)(undefined);
 
 
 // module
-exports.push([module.i, ".App {\n  text-align: center;\n}\n\n.App-logo {\n  animation: App-logo-spin infinite 20s linear;\n  height: 80px;\n}\n\n.ss-logo {\n  height: 80px;\n}\n\n.App-header {\n  background-color: #222;\n  height: 150px;\n  padding: 20px;\n  color: white;\n}\n\n.App-title {\n  font-size: 1.5em;\n}\n\n.App-intro {\n  font-size: large;\n}\n\n@keyframes App-logo-spin {\n  from { transform: rotate(0deg); }\n  to { transform: rotate(360deg); }\n}\n", ""]);
+exports.push([module.i, ".App {\n  text-align: center;\n}\n\n.App-logo {\n  animation: App-logo-spin infinite 20s linear;\n  height: 80px;\n}\n\n.ss-logo {\n  height: 80px;\n}\n\n.App-header {\n  background-color: #222;\n  height: 150px;\n  padding: 20px;\n  color: white;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n\n.App-title {\n  font-size: 1.5em;\n}\n\n.App-intro {\n  font-size: large;\n}\n\n@keyframes App-logo-spin {\n  from { transform: rotate(0deg); }\n  to { transform: rotate(360deg); }\n}\n\n.Main__Body {\n  text-align: center;\n}\n", ""]);
 
 // exports
 
@@ -21906,13 +21898,13 @@ exports.push([module.i, ".App {\n  text-align: center;\n}\n\n.App-logo {\n  anim
 /* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "Images/webpack.svg";
+module.exports = __webpack_require__.p + "img/webpack.svg";
 
 /***/ }),
 /* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "Images/silverstripe-logo.png";
+module.exports = __webpack_require__.p + "img/silverstripe-logo.png";
 
 /***/ })
 /******/ ]);

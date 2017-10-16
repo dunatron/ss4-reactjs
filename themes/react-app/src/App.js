@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import logo from './Images/logo.svg';
+import logo from './img/logo.svg';
 import './App.css';
-import WebpackLogo from './Images/webpack.svg';
-import SSLogo from './Images/silverstripe-logo.png';
+import WebpackLogo from './img/webpack.svg';
+import SSLogo from './img/silverstripe-logo.png';
 
 class App extends Component {
   render() {
@@ -12,10 +12,10 @@ class App extends Component {
           <img src={SSLogo} className="ss-logo" alt="logo" />
           <img src={logo} className="App-logo" alt="logo" />
           <img src={WebpackLogo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to SS4 + REACT + WEBPACK</h1>
-          <p>anyone know how to get webpack watch working with Vagrant?? compiles falsely STopped?</p>
         </header>
+
         <p className="App-intro">
+          Welcome to SS4 + REACT + WEBPACK <br />
           To get started, edit <code>src/App.js</code> and save to reload Hello.
         </p>
       </div>
