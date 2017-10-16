@@ -1,8 +1,10 @@
 const webpack = require('webpack');
 const path = require('path');
 
-var srcPath  = path.join(__dirname, '/src/'),
-  distPath = path.join(__dirname, '/dist/');
+const THEME_NAME = 'react-app'; // Define SilverStripe Theme Name
+
+var srcPath  = path.join(__dirname, './src/'),
+    distPath = path.join(__dirname, './dist/');
 
 module.exports = {
   watch: false,
@@ -15,16 +17,15 @@ module.exports = {
     poll: true
   },
   output: {
-    path: distPath,
+    path: path.resolve(__dirname, distPath),
+    publicPath: '/themes/'+THEME_NAME+'/dist/',
     filename: '[name].bundle.js',
   },
   resolve: {
     modules: ["node_modules"],
     extensions: ['.js', '.jsx'],
   },
-  plugins: [
-
-  ],
+  plugins: [],
 
 
   module: {
@@ -62,12 +63,22 @@ module.exports = {
           'sass-loader',
         ],
       },
-
-      // Loaders for other file types go here
       {
         test: /\.(woff|woff2|ttf|eot|svg|gif|png)(\?v=[a-z0-9]\.[a-z0-9]\.[a-z0-9])?$/,
-        loader: 'url-loader?limit=100000&name=fonts/[name].[ext]',
-      },
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              name: '[path][name].[ext]',
+              limit: 1,
+              useRelativePath: false,
+              svgo: {
+                quality: 10
+              }
+            }
+          }
+        ]
+      }
 
     ],
 

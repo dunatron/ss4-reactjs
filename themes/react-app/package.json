@@ -47,8 +47,9 @@
     "test": "node scripts/test.js --env=jsdom",
     "build:dev": "node_modules/.bin/webpack",
     "build:prod": "webpack -p",
-    "start:watch": "webpack-dev-server --host 0.0.0.0 --public 192.168.72.91:80 --watch-poll",
-    "start:watch2": "webpack-dev-server --host 0.0.0.0 --public 192.168.72.91:80 --watch-poll"
+    "build-production": "NODE_ENV=production webpack -p --config webpack.config.js",
+    "start:watch": "webpack --watch --config webpack.config.js",
+    "start:reload": "webpack-dev-server --host 0.0.0.0 --public 192.168.72.91:80 --watch-poll"
   },
   "jest": {
     "collectCoverageFrom": [

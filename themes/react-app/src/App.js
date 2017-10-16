@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import logo from './Images/logo.svg';
 import './App.css';
-import WebpackLogo from './webpack.svg';
-import SSLogo from './silverstripe-logo.png';
+import WebpackLogo from './Images/webpack.svg';
+import SSLogo from './Images/silverstripe-logo.png';
 
 class App extends Component {
   render() {
