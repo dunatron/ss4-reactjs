@@ -3,5 +3,5 @@ Name: mytheme
 ---
 SilverStripe\View\SSViewer:
   themes:
-    - 'simple'
+    - 'react-app'
     - '$default'
