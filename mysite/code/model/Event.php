@@ -1,34 +1,39 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Heath
- * Date: 16/04/16
- * Time: 12:27 AM
- */
+namespace MyOrg\Model;
 
 use SilverStripe\ORM\DataObject;
+use SilverStripe\Assets\Image;
+use SilverStripe\Security\Member;
 
-class Event extends DataObject {
+class Event extends DataObject
+{
+    private static $db = [
+        'Title' => 'Varchar(255)',
+    ];
 
-    private static $has_one = array(
-    );
+    private static $has_one = [
+        'Owner' => Member::class,
+        'Image' => Image::class
+    ];
 
-    private static $has_many = array(
-    );
+    private static $default_sort = 'Created DESC';
 
-    private static $many_many = array(
-    );
+    public function getThumbnail()
+    {
+        return $this->Image()->exists() ? $this->Image()->Fill(300, 300)->AbsoluteURL : null;
+    }
 
-    private static $summary_fields = array(
-        'Title' => 'Title',
-    );
+    public function canView($member = null)
+    {
+        return true;
+    }
 
-    private static $db = array(
-        'Title' => 'Varchar(100)',
-    );
+    public function onAfterWrite()
+    {
+        parent::onAfterWrite();
 
-    private static $searchable_fields = array(
-    );
-    
-
+        if ($this->Image()->exists()) {
+            $this->Image()->copyVersionToStage('Stage', 'Live');
+        }
+    }
 }

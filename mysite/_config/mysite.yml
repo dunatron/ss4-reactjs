@@ -1,7 +1,21 @@
 ---
-Name: myproject
+Name: app
+Before:
+  - coreconfig
 ---
 SilverStripe\Core\Manifest\ModuleManifest:
-  project: mysite
+  project: app
 SilverStripe\Core\Injector\Injector:
-  SilverStripe\Forms\HTMLEditor\TinyMCEScriptGenerator: 'SilverStripe\Forms\HTMLEditor\TinyMCEGZIPGenerator'
+  Psr\Log\LoggerInterface:
+    calls:
+      LogFileHandler: [ pushHandler, [ %$LogFileHandler ] ]
+  LogFileHandler:
+    class: Monolog\Handler\StreamHandler
+    constructor:
+      - "../silverstripe.log"
+      - "info"
+SilverStripe\i18n\i18n:
+  default_locale: 'en_US'
+SilverStripe\Security\Member:
+  extensions:
+    - MyOrg\Extension\EventOwner

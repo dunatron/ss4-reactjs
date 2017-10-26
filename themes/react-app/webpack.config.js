@@ -14,7 +14,7 @@ module.exports = {
   cache: true,
   context: srcPath,
   entry: {
-    app: './index.js',
+    app: './index.jsx',
   },
   watchOptions: {
     poll: true

@@ -24,6 +24,15 @@ Change it, enhance it and most importantly enjoy it!
     <![endif]-->
 
     <%--<link rel="shortcut icon" href="themes/simple/images/favicon.ico" />--%>
+    <style>
+        *,
+        *::before,
+        *::after {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+    </style>
 </head>
 <body>
 <div id="react-root">

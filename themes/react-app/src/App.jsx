@@ -3,9 +3,28 @@ import logo from './img/logo.svg';
 import './App.css';
 import WebpackLogo from './img/webpack.svg';
 import SSLogo from './img/silverstripe-logo.png';
+import EventList from './pages/EventList';
+import { withStyles } from 'material-ui/styles';
+
+const styles = {
+  cardHolder: {
+    'display': 'flex',
+    'align-items': 'center',
+    'overflow': 'auto',
+    'box-sizing': 'border-box',
+    'width': '100%',
+    'justify-content': 'center',
+    'flex-direction': 'row',
+    'flex-wrap': 'wrap',
+    'flex-flow': 'row wrap',
+    'align-content': 'flex-end'
+  }
+};
 
 class App extends Component {
   render() {
+
+    const { classes } = this.props;
     return (
       <div className="App">
         <header className="App-header">
@@ -18,9 +37,13 @@ class App extends Component {
           Welcome to SS4 + REACT + WEBPACK <br />
           To get started, edit <code>src/App.js</code> and save to reload Hello.
         </p>
+        <div className={classes.cardHolder}>
+          <EventList />
+        </div>
       </div>
     )
   }
 }
 
-export default App;
+// export default App;
+export default withStyles(styles)(App)

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "64d5414de45c04fd99f5abfc64967310",
+    "content-hash": "152e72e153e10faf5dc53d6f6cc73465",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -956,7 +956,7 @@
                 "silverstripe",
                 "theme"
             ],
-            "time": "2017-02-01 23:56:41"
+            "time": "2017-02-01T23:56:41+00:00"
         },
         {
             "name": "silverstripe/admin",
@@ -1493,6 +1493,33 @@
             "notification-url": "https://packagist.org/downloads/",
             "description": "GraphQL server for SilverStripe models and other data",
             "time": "2017-10-03T11:15:20+00:00"
+        },
+        {
+            "name": "silverstripe/graphql-devtools",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/silverstripe/silverstripe-graphql-devtools.git",
+                "reference": "df940a5453750c3ab8270616f7bff8afed56c3f9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/silverstripe/silverstripe-graphql-devtools/zipball/df940a5453750c3ab8270616f7bff8afed56c3f9",
+                "reference": "df940a5453750c3ab8270616f7bff8afed56c3f9",
+                "shasum": ""
+            },
+            "require": {
+                "silverstripe/graphql": "*"
+            },
+            "type": "silverstripe-module",
+            "autoload": {
+                "psr-4": {
+                    "SilverStripe\\GraphQLDevTools\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "description": "Tools to help developers building new applications on SilverStripe’s GraphQL API",
+            "time": "2017-03-22T01:04:20+00:00"
         },
         {
             "name": "silverstripe/recipe-cms",
@@ -3701,7 +3728,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "silverstripe/recipe-plugin": 20
+        "silverstripe/recipe-plugin": 20,
+        "silverstripe/graphql-devtools": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
