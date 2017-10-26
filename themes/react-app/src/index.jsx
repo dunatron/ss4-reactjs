@@ -7,7 +7,8 @@ import App from './App';
 const networkInterface = createNetworkInterface({
   // uri: 'http://192.168.50.74:3001/graphql'
   // uri: 'http://192.168.50.74/graphql'
-  uri: 'http://ss4-react.d/graphql'
+  // uri: 'http://ss4-react.d/graphql'
+  uri: 'http://ss4-react.whatshapp.nz/graphql'
 });
 
 const client = new ApolloClient({
