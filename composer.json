@@ -8,7 +8,8 @@
         "silverstripe/recipe-cms": "1.0.0-beta4",
         "silverstripe-themes/simple": "~3.2.0",
         "silverstripe/graphql": "^0.2.7",
-        "silverstripe/graphql-devtools": "dev-master"
+        "silverstripe/graphql-devtools": "dev-master",
+        "tractorcow/silverstripe-colorpicker": "^4@dev"
     },
     "require-dev": {
         "phpunit/PHPUnit": "^5.7"

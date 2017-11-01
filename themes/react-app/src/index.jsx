@@ -4,11 +4,25 @@ import { ApolloClient, ApolloProvider, createNetworkInterface } from 'react-apol
 import './index.css';
 import App from './App';
 
+// Platform being built
+console.log(PLATFORM);
+
+let NetworkURI = GRAPHQLURIDEV;
+
+// global env const set in webpack.conf.js
+if(PRODUCTION) {
+  NetworkURI = GRAPHQLURIPROD
+} else {
+  NetworkURI = GRAPHQLURIDEV
+}
+
 const networkInterface = createNetworkInterface({
   // uri: 'http://192.168.50.74:3001/graphql'
   // uri: 'http://192.168.50.74/graphql'
-  // uri: 'http://ss4-react.d/graphql'
-  uri: 'http://ss4-react.whatshapp.nz/graphql'
+   //uri: 'http://ss4-react.d/graphql'
+  //uri: 'http://ss4-react.whatshapp.nz/graphql'
+  uri: NetworkURI
+
 });
 
 const client = new ApolloClient({
@@ -26,5 +40,9 @@ ReactDOM.render(
 
 
 // SS React theme Entry Point
-console.log('This is the entry point for react application');
-console.log('Still need to define server & Hot Module reload')
+
+if(PRODUCTION) {
+  console.log('PRODUCTION BUILD');
+} else {
+  console.log('DEVELOPMENT BUILD');
+}

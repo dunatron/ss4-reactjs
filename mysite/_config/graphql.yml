@@ -22,6 +22,15 @@ SilverStripe\GraphQL\Controller:
             Friends: true
             Events: true
         MyOrg\Model\Event:
-          fields: [ID, Title, Thumbnail, Owner]
+          fields: [ID, Title, Thumbnail, Owner, BgColor, Category]
           operations:
             read: true
+        MyOrg\Model\Category:
+          fields: [ID, Name, BgColor]
+          operations:
+            create: true
+            read: true
+  # Enforce HTTP basic authentication for GraphQL requests
+  authenticators:
+    class: SilverStripe\GraphQL\Auth\BasicAuthAuthenticator
+    priority: 10

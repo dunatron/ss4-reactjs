@@ -5,15 +5,18 @@ use SilverStripe\ORM\DataObject;
 use SilverStripe\Assets\Image;
 use SilverStripe\Security\Member;
 
+
 class Event extends DataObject
 {
     private static $db = [
         'Title' => 'Varchar(255)',
+        'BgColor' => 'TractorCow\Colorpicker\Color'
     ];
 
     private static $has_one = [
         'Owner' => Member::class,
-        'Image' => Image::class
+        'Image' => Image::class,
+        'Category' => Category::class
     ];
 
     private static $default_sort = 'Created DESC';

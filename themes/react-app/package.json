@@ -45,11 +45,10 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "build:dev": "node_modules/.bin/webpack",
-    "build:prod": "webpack -p",
-    "build-production": "NODE_ENV=production webpack -p --config webpack.config.js",
-    "start:watch": "webpack --watch --config webpack.config.js",
-    "start:reload": "webpack-dev-server --host 0.0.0.0 --public 192.168.72.91:80 --watch-poll"
+    "start:reload": "webpack-dev-server --host 0.0.0.0 --public 192.168.72.91:80 --watch-poll",
+    "start:watch": "webpack --watch --config webpack.config.js --env.development --env.platform=watchPlatform --progress",
+    "build:dev": "webpack --config webpack.config.js --env.development --env.platform=devPlatform --progress",
+    "build:prod": "webpack -p --config webpack.config.js --env.production --env.platform=prodPlatform --progress"
   },
   "jest": {
     "collectCoverageFrom": [
