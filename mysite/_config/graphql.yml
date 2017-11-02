@@ -25,6 +25,7 @@ SilverStripe\GraphQL\Controller:
           fields: [ID, Title, Thumbnail, Owner, BgColor, Category]
           operations:
             read: true
+            create: true
         MyOrg\Model\Category:
           fields: [ID, Name, BgColor]
           operations:

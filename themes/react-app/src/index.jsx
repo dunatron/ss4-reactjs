@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import { ApolloClient, ApolloProvider, createNetworkInterface } from 'react-apollo';
 import './index.css';
 import App from './App';
+import fetch from 'isomorphic-fetch';
+import GraphQLDocs from 'graphql-docs';
 
 // Platform being built
 console.log(PLATFORM);
@@ -46,3 +48,24 @@ if(PRODUCTION) {
 } else {
   console.log('DEVELOPMENT BUILD');
 }
+
+function fetcher(query) {
+  return fetch(window.location.origin + '/graphql', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      query: query,
+    }),
+  }).then(function(r) {
+    return r.json();
+  });
+}
+
+const rootElemDocs = document.getElementById('docs-root');
+ReactDOM.render(
+  <GraphQLDocs fetcher={fetcher} />,
+  rootElemDocs
+);
