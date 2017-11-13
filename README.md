@@ -2,25 +2,86 @@
 
 Getting [Silverstripe 4](http://doc.silverstripe.org/framework/en/installation/),
 [react-create-app](http://doc.silverstripe.org/framework/en/installation/),
-and [webpack3](https://webpack.js.org/) to play nice
+and [webpack3](https://webpack.js.org/) to play nice.
+
+## What is in the Box? ##
+The following tools are installed out of the box
+* SilverStripe 4 CMS and Framework
+* GraphQL
+* Webpack 3
+* ReactJS
+* Apollo
+
+## Why? ##
+
+  
+[Webpack3](https://webpack.js.org/) Webpack is an open-source JavaScript module bundler. Webpack takes modules with dependencies and generates static assets representing those modules.
+
+[Apollo Client](http://dev.apollodata.com/) makes fetching the exact data you need for your component easy and allows you to put your queries exactly where you need them.  
+
+[GraphQl](http://graphql.org/) Send a GraphQL query to your API and get exactly what you need, nothing more and nothing less. 
+GraphQL queries always return predictable results. Apps using GraphQL are fast and stable because they control the data they get, not the server. 
+
+[ReactJS](https://reactjs.org/) A JavaScript library for building user interfaces
+
+
+**In a nutshell**  
+GraphQL will create our API, Webpack 3 will compile our front-end application which will use Apollo to fetch Data for our react components
 
 ## Installation ##
 
-* git clone[https://github.com/dunatron/react-add-form.git](https://github.com/dunatron/react-add-form.git)
+* cd to your project root
+* git clone[https://github.com/dunatron/ss4-reactjs.git](https://github.com/dunatron/ss4-reactjs.git)
 * composer install 
-
-## Build Scripts ##
+* cd themes/react-app
+* npm install -g yarn
 * yarn install 
-* yarn run build:dev
-* yarn add webpack -g
-* yarn webpack 
+
+## Webpack Build Scripts ##
+* npm run build:dev
+* npm run build:watch
+* npm run build:prod
 
 
-## Bugtracker ##
+## Setup ##
+There is some configuration setup needed to point our application to our GraphQL API. Apollo Client needs the url. 
+Luckily this has been integrated into the webpack configuration `themes/react-app/webpack.config.js`  
 
-Bugs are tracked on github.com ([framework issues](https://github.com/silverstripe/silverstripe-framework/issues),
-[cms issues](https://github.com/silverstripe/silverstripe-cms/issues)). 
-Please read our [issue reporting guidelines](http://doc.silverstripe.org/framework/en/misc/contributing/issues).
+configure your DEV and PROD domain names/address  found at around line 17 and 18 
+ 
+  `const graphqlURIDEV = 'http://192.168.50.74/graphql';`  
+  `const graphqlURIPROD = 'http://ss4-react.whatshapp.nz/graphql';`
+  
+## Tools at your disposal ##
+[SilverStripe-graphql-devtools](https://github.com/silverstripe/silverstripe-graphql-devtools) are installed out of the box which will help you write your GrapghQL Queries, all you need to do is append
+`/dev/graphiql/` to your site base and you can start writing queries to implement on your ReactJS application. The below snippet was run using this tool, you can find an example of this 
+in `themes/react-app/src/components/EventCard.jsx` and `themes/react-app/src/pages/EventList.jsx`
+```
+fragment testFrag on Event {
+  Title
+  Thumbnail
+  BgColor
+  Owner {
+    Name
+    Surname
+  }
+  Category {
+    Name
+  }
+}
+  
+query readEvents {
+  readEvents {
+    edges {
+      node {
+        ID
+        ...testFrag
+      }
+    }
+  }
+}
+```
+
 
 ## Development and Contribution ##
 
@@ -77,3 +138,11 @@ NOTE:
 md new line just end current line with 2 blank spaces  
   
 DO: create a new pull request when editing
+
+## ToDo ##
+* Move https://github.com/silverstripe/silverstripe-graphql-devtools to be a dev dependency in composer
+* try to get npm graphql-docs implemented and working as dev-dependency
+* cleanup front end dependencies like `isomorphic-fetch` and `whatwg-fetch`
+* listen to `yarn` and cleanup warnings
+
+
