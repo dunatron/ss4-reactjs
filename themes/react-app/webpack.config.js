@@ -16,18 +16,6 @@ module.exports = (env = {}) => {
    * Environment variables, needed throughout the index.jsx file to determine our
    * ApolloProvider client and graphQl endpoint
    */
-  const isProduction = env.production === true;
-  const isBuildFromEnv = env.envsettings === true;
-
-  const graphqlURIDEV = 'http://192.168.50.78/graphql';
-  const graphqlURIPROD = 'http://ss4-react.whatshapp.nz/graphql';
-
-  const EnvBaseURL = DOTENV.parsed.SS_BASE_URL;
-  const EnvGraphQLBase = DOTENV.parsed.SS_BASE_URL + '/graphql';
-
-  const ConsoleFont1 = '\x1b[32m\x1b[40m%s\x1b[0m'; // green font black BG
-  const ConsoleFont2 = '\x1b[32m';
-
   const Dev_Base_URL = 'http://192.168.50.78';
   const Prod_Base_URL = 'http://ss4-react.whatshapp.nz';
   const Env_Base_URL = DOTENV.parsed.SS_BASE_URL;
@@ -35,43 +23,27 @@ module.exports = (env = {}) => {
   const BuildType = env.buildType;
   let AppBaseURL = '';
 
+  const ConsoleFont1 = '\x1b[32m\x1b[40m%s\x1b[0m'; // green font black BG
+  const ConsoleFont2 = '\x1b[32m';
+
+  console.log(ConsoleFont1, 'Webpack is building your project...');
+
   switch (BuildType) {
     case "dev":
       AppBaseURL = Dev_Base_URL;
+      console.log(ConsoleFont1, AppBaseURL);
       break;
     case "prod":
       AppBaseURL = Prod_Base_URL;
+      console.log(ConsoleFont1, AppBaseURL);
       break;
     case "env":
-      AppBaseURL = "env";
+      AppBaseURL = Env_Base_URL;
+      console.log(ConsoleFont1, AppBaseURL);
       break;
     case "location":
+      console.log(ConsoleFont1, 'GraphQL will use window.location to determine the endpoint');
       AppBaseURL = ""; // if AppBaseURL.length=0 javascript will handle a blank url by using window.location
-  }
-
-  const GraphQL_URL = AppBaseURL + '/graphql';
-
-  /**
-   * Tell the user what we are doing
-   */
-
-  console.log('and the variable issssss');
-  console.log(ConsoleFont1, AppBaseURL);
-  console.log(ConsoleFont1, 'Webpack is building your project...');
-  console.log('\n');
-  if (isProduction) {
-    console.log(ConsoleFont1, 'Building Production build');
-  } else if(isBuildFromEnv) {
-    console.log(ConsoleFont1, 'Building from .env file, please check variables...');  // green font black BG
-    console.log(ConsoleFont1, 'Note: only the SS_BASE_URL will be exposed in your bundle');
-    console.log('\x1b[32m');
-    console.log('\n');
-    console.log(ConsoleFont1, JSON.stringify(DOTENV.parsed));
-
-    console.log(DOTENV.parsed);
-    console.log('\x1b[32m%s\x1b[0m', '\n');
-  } else {
-    console.log('\x1b[32m\x1b[40m%s\x1b[0m', 'Building Development Build...');
   }
 
   /**
@@ -204,14 +176,7 @@ module.exports = (env = {}) => {
        * Allows us to use these as Global constants through our JS App
        */
       new webpack.DefinePlugin({
-        PRODUCTION: JSON.stringify(isProduction),
-        BUILD_FROM_DOT_ENV: JSON.stringify(isBuildFromEnv),
-        GRAPHQLURIDEV:  JSON.stringify(graphqlURIDEV),
-        GRAPHQLURIPROD:  JSON.stringify(graphqlURIPROD),
-        ENV_BASE_URL: JSON.stringify(EnvBaseURL),
-        ENV_GRAPH_QL_BASE_URL: JSON.stringify(EnvGraphQLBase),
         BASE_URL_VARIABLE: JSON.stringify(AppBaseURL),
-        GRAPH_QL_URL: JSON.stringify(GraphQL_URL),
       }),
 
     ],
