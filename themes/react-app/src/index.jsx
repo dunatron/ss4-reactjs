@@ -3,33 +3,14 @@ import ReactDOM from 'react-dom';
 import { ApolloClient, ApolloProvider, createNetworkInterface } from 'react-apollo';
 import './index.css';
 import App from './App';
-
-
-let NetworkURI = '';
+import GraphQLConfig from './config/GraphQLConfig';
 
 /**
- * global env constants set in webpack.conf.js
+ * Get GraphQL endpoint
  */
-if(PRODUCTION) {
-  NetworkURI = GRAPHQLURIPROD
-} else if(BUILD_FROM_DOT_ENV)  {
-  NetworkURI = ENV_GRAPH_QL_BASE_URL
-} else {
-  NetworkURI = GRAPHQLURIDEV
-}
-
-// ToDo: Look into this
-// If for some reason they do not use one of the build scripts in package.json, we can perhaps give them a chance
-// How much of a performance hit is this? because it would be nice if the url being viewed could determine,
-// the graphql endpoint instead of running npm run build:env
-if(NetworkURI.length === 0)
-{
-  let getUrl = window.location;
-  let baseUrl = getUrl .protocol + "//" + getUrl.host + "/" + getUrl.pathname.split('/')[1];
-  NetworkURI = baseUrl + 'graphql';
-  console.log('Not set by environment =(');
-  console.log(NetworkURI);
-}
+let BASE_URL = BASE_URL_VARIABLE;
+let SiteGraphqlConfig = new GraphQLConfig(BASE_URL);
+let GRAPHQL_ENDPOINT = SiteGraphqlConfig.getGraphqlEndPoint();
 
 /**
  * ToDo: When we build our project we need to hit and query our graphQL endpoint.
@@ -43,7 +24,7 @@ if(NetworkURI.length === 0)
  */
 const networkInterface = createNetworkInterface({
   //uri: 'http://my-app.local/graphql'
-  uri: NetworkURI
+  uri: GRAPHQL_ENDPOINT
 });
 
 /**

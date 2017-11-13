@@ -41,6 +41,20 @@ GraphQL will create our API, Webpack 3 will compile our front-end application wh
 * npm run build:dev
 * npm run build:watch
 * npm run build:prod
+* npm run build:env
+* npm run build:location
+
+*build:dev* will compile a bundle that will point to your graphql set at the *const graphqlURIDEV*  in webpack.config.js 
+  
+  *build:prod* will compile a bundle that will point to your graphql set at the *const graphqlURIPROD*  in webpack.config.js this should be the domain name of your live site  
+  
+  *build:watch* will compile a bundle that will point to your graphql set at the *const graphqlURIDEV*  in webpack.config.js It will then watch for changes in the `themes/react-app/src` directory  
+  
+  *build:env* compiles a bundles that uses your `.env` file to set the graphql endpoint as long as the `SS_BASE_URL="http://example.site.com"` has been set in the .env file  
+  
+  *buid:location* compiles a bundle that will point to your apps base domain at run time. It makes use of `window.location`  
+  
+  *ToDo:* make webpack do most of the work and set through one `BASE_URL_VARIABLE` build:location is the only exception.
 
 
 ## Setup ##

@@ -47,10 +47,11 @@
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
     "start:reload": "webpack-dev-server --host 0.0.0.0 --public 192.168.72.91:80 --watch-poll",
-    "start:watch": "webpack --watch --config webpack.config.js --env.development --env.platform=watchPlatform --progress",
-    "build:dev": "webpack --config webpack.config.js --env.development --env.platform=devPlatform --progress",
-    "build:prod": "webpack -p --config webpack.config.js --devtool=none --env.production --env.platform=prodPlatform --progress",
-    "build:env": "webpack -p --config webpack.config.js --devtool=none --env.envsettings --progress"
+    "start:watch": "webpack --watch --config webpack.config.js --env.buildType=dev --progress",
+    "build:dev": "webpack --config webpack.config.js --env.development --env.buildType=dev --progress",
+    "build:prod": "webpack -p --config webpack.config.js --devtool=none --env.buildType=prod --env.production --progress",
+    "build:env": "webpack -p --config webpack.config.js --devtool=none --env.buildType=env --env.envsettings --progress",
+    "build:location": "webpack -p --config webpack.config.js --devtool=none --env.buildType=location --progress"
   },
   "jest": {
     "collectCoverageFrom": [

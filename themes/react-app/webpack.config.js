@@ -19,24 +19,55 @@ module.exports = (env = {}) => {
   const isProduction = env.production === true;
   const isBuildFromEnv = env.envsettings === true;
 
-  const graphqlURIDEV = 'http://192.168.50.74/graphql';
+  const graphqlURIDEV = 'http://192.168.50.78/graphql';
   const graphqlURIPROD = 'http://ss4-react.whatshapp.nz/graphql';
 
   const EnvBaseURL = DOTENV.parsed.SS_BASE_URL;
   const EnvGraphQLBase = DOTENV.parsed.SS_BASE_URL + '/graphql';
 
+  const ConsoleFont1 = '\x1b[32m\x1b[40m%s\x1b[0m'; // green font black BG
+  const ConsoleFont2 = '\x1b[32m';
+
+  const Dev_Base_URL = 'http://192.168.50.78';
+  const Prod_Base_URL = 'http://ss4-react.whatshapp.nz';
+  const Env_Base_URL = DOTENV.parsed.SS_BASE_URL;
+
+  const BuildType = env.buildType;
+  let AppBaseURL = '';
+
+  switch (BuildType) {
+    case "dev":
+      AppBaseURL = Dev_Base_URL;
+      break;
+    case "prod":
+      AppBaseURL = Prod_Base_URL;
+      break;
+    case "env":
+      AppBaseURL = "env";
+      break;
+    case "location":
+      AppBaseURL = ""; // if AppBaseURL.length=0 javascript will handle a blank url by using window.location
+  }
+
+  const GraphQL_URL = AppBaseURL + '/graphql';
+
   /**
    * Tell the user what we are doing
    */
-  console.log('\x1b[32m\x1b[40m%s\x1b[0m', 'Webpack is building your project...');  // green font black BG
+
+  console.log('and the variable issssss');
+  console.log(ConsoleFont1, AppBaseURL);
+  console.log(ConsoleFont1, 'Webpack is building your project...');
   console.log('\n');
   if (isProduction) {
-    console.log('\x1b[32m\x1b[40m%s\x1b[0m', 'Building Production build');
+    console.log(ConsoleFont1, 'Building Production build');
   } else if(isBuildFromEnv) {
-    console.log('\x1b[32m\x1b[40m%s\x1b[0m', 'Building from .env file, please check variables...');  // green font black BG
-    console.log('\x1b[32m\x1b[40m%s\x1b[0m', 'Note: only the SS_BASE_URL will be exposed in your bundle');
+    console.log(ConsoleFont1, 'Building from .env file, please check variables...');  // green font black BG
+    console.log(ConsoleFont1, 'Note: only the SS_BASE_URL will be exposed in your bundle');
     console.log('\x1b[32m');
     console.log('\n');
+    console.log(ConsoleFont1, JSON.stringify(DOTENV.parsed));
+
     console.log(DOTENV.parsed);
     console.log('\x1b[32m%s\x1b[0m', '\n');
   } else {
@@ -178,7 +209,9 @@ module.exports = (env = {}) => {
         GRAPHQLURIDEV:  JSON.stringify(graphqlURIDEV),
         GRAPHQLURIPROD:  JSON.stringify(graphqlURIPROD),
         ENV_BASE_URL: JSON.stringify(EnvBaseURL),
-        ENV_GRAPH_QL_BASE_URL: JSON.stringify(EnvGraphQLBase)
+        ENV_GRAPH_QL_BASE_URL: JSON.stringify(EnvGraphQLBase),
+        BASE_URL_VARIABLE: JSON.stringify(AppBaseURL),
+        GRAPH_QL_URL: JSON.stringify(GraphQL_URL),
       }),
 
     ],
