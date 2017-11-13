@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 
 const THEME_NAME = 'react-app'; // define SilverStripe theme name
+const DOTENV = require('dotenv').config({path: '../../.env'});
 
 var srcPath  = path.join(__dirname, './src/'),
     distPath = path.join(__dirname, './dist/');
@@ -11,12 +12,40 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 
 
 module.exports = (env = {}) => {
-  // Variables set by npm scripts in package.json
+  /**
+   * Environment variables, needed throughout the index.jsx file to determine our
+   * ApolloProvider client and graphQl endpoint
+   */
   const isProduction = env.production === true;
-  const platform = env.platform; // 'default' by default
+  const isBuildFromEnv = env.envsettings === true;
+
   const graphqlURIDEV = 'http://192.168.50.74/graphql';
   const graphqlURIPROD = 'http://ss4-react.whatshapp.nz/graphql';
 
+  const EnvBaseURL = DOTENV.parsed.SS_BASE_URL;
+  const EnvGraphQLBase = DOTENV.parsed.SS_BASE_URL + '/graphql';
+
+  /**
+   * Tell the user what we are doing
+   */
+  console.log('\x1b[32m\x1b[40m%s\x1b[0m', 'Webpack is building your project...');  // green font black BG
+  console.log('\n');
+  if (isProduction) {
+    console.log('\x1b[32m\x1b[40m%s\x1b[0m', 'Building Production build');
+  } else if(isBuildFromEnv) {
+    console.log('\x1b[32m\x1b[40m%s\x1b[0m', 'Building from .env file, please check variables...');  // green font black BG
+    console.log('\x1b[32m\x1b[40m%s\x1b[0m', 'Note: only the SS_BASE_URL will be exposed in your bundle');
+    console.log('\x1b[32m');
+    console.log('\n');
+    console.log(DOTENV.parsed);
+    console.log('\x1b[32m%s\x1b[0m', '\n');
+  } else {
+    console.log('\x1b[32m\x1b[40m%s\x1b[0m', 'Building Development Build...');
+  }
+
+  /**
+   * Webpack variables
+   */
   return {
     watch: false,
     cache: true,
@@ -36,6 +65,7 @@ module.exports = (env = {}) => {
       modules: ["node_modules"],
       extensions: ['.js', '.jsx'],
     },
+    devtool: "source-map",
 
     module: {
 
@@ -98,6 +128,10 @@ module.exports = (env = {}) => {
 
     },
 
+    /**
+     * This plugin creates a report about everything you are using in your js app.
+     * Pro tip: Look for repeating packages and create a Webpack Common chunks plugin for repeats
+     */
     plugins: [
       new BundleAnalyzerPlugin({
         // Can be `server`, `static` or `disabled`.
@@ -135,12 +169,16 @@ module.exports = (env = {}) => {
         logLevel: 'info',
       }),
 
+      /**
+       * Allows us to use these as Global constants through our JS App
+       */
       new webpack.DefinePlugin({
-        // Allows these constants to be accessed by the aurelia app
         PRODUCTION: JSON.stringify(isProduction),
-        PLATFORM: JSON.stringify(platform),
+        BUILD_FROM_DOT_ENV: JSON.stringify(isBuildFromEnv),
         GRAPHQLURIDEV:  JSON.stringify(graphqlURIDEV),
-        GRAPHQLURIPROD:  JSON.stringify(graphqlURIPROD)
+        GRAPHQLURIPROD:  JSON.stringify(graphqlURIPROD),
+        ENV_BASE_URL: JSON.stringify(EnvBaseURL),
+        ENV_GRAPH_QL_BASE_URL: JSON.stringify(EnvGraphQLBase)
       }),
 
     ],
