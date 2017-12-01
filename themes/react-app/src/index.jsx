@@ -4,6 +4,13 @@ import { ApolloClient, ApolloProvider, createNetworkInterface } from 'react-apol
 import './index.css';
 import App from './App';
 import GraphQLConfig from './config/GraphQLConfig';
+// const DOTENV = require('dotenv').config({path: '../../../.env'});
+//
+//
+// console.log(result);
+
+// const path = require('path');
+// const DOTENV = require('dotenv').config({path: '../../../.env'});
 
 /**
  * Get GraphQL endpoint

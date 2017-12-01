@@ -1,5 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
+require("babel-core/register");
+require("babel-polyfill");
 
 const THEME_NAME = 'react-app'; // define SilverStripe theme name
 const DOTENV = require('dotenv').config({path: '../../.env'});
@@ -54,7 +56,7 @@ module.exports = (env = {}) => {
     cache: true,
     context: srcPath,
     entry: {
-      app: './index.jsx',
+      app: ['babel-polyfill','./index.jsx']
     },
     watchOptions: {
       poll: true

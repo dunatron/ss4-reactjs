@@ -11,7 +11,7 @@ class Category extends DataObject
     ];
 
     private static $has_many = [
-        'Events' => Event::class
+        'Events' => Event::class,
     ];
 
     private static $default_sort = 'Created DESC';

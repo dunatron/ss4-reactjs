@@ -19,3 +19,5 @@ SilverStripe\i18n\i18n:
 SilverStripe\Security\Member:
   extensions:
     - MyOrg\Extension\EventOwner
+SilverStripe\ErrorPage\ErrorPage:
+  can_be_root: false
