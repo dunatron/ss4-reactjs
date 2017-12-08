@@ -28,6 +28,7 @@ class ReactPageController extends PageController
         parent::init();
         // You can include any CSS or JS required by your project here.
         // See: https://docs.silverstripe.org/en/developer_guides/templates/requirements/
+        error_log(var_export($_SERVER, true));
     }
     public function doInit()
     {

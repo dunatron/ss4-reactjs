@@ -71,6 +71,9 @@ module.exports = (env = {}) => {
       extensions: ['.js', '.jsx'],
     },
     devtool: "source-map",
+    node: {
+      fs: 'empty'
+    },
 
     module: {
 

@@ -20,4 +20,4 @@ SilverStripe\Security\Member:
   extensions:
     - MyOrg\Extension\EventOwner
 SilverStripe\ErrorPage\ErrorPage:
-  can_be_root: false
+  can_be_root: true

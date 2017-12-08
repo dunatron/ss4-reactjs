@@ -32,6 +32,6 @@ SilverStripe\GraphQL\Controller:
             create: true
             read: true
   # Enforce HTTP basic authentication for GraphQL requests
-  authenticators:
-    class: SilverStripe\GraphQL\Auth\BasicAuthAuthenticator
-    priority: 10
+#  authenticators:
+#    class: SilverStripe\GraphQL\Auth\BasicAuthAuthenticator
+#    priority: 10
